@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FARMAURA</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<header>
+    <div class="header">
+        <div class="logo">
+            <img id="logo">
+            <a href="index.html"><span>FARMAURA</span></a>
+        </div>
+        <div class="cadcar">
+            <div class="cad">
+                <i class="fa-solid fa-user" id="cad"></i>
+                <span>Cadastro</span>
+            </div>
+            <div class="car">
+                <i class="fa-solid fa-cart-shopping" id="car"></i>
+                <span>Carrinho</span>
+            </div>
+        </div>
+    </div>
+    <div class="search">
+        <input type="text" placeholder="Buscar...">
+        <button id="btnSearch"><i class="fa-solid fa-magnifying-glass"></i></button>
+
+        <nav class="links">
+            <a href="produtos.html">Remédios</a>
+            <a href="produtos.html">Utensílios</a>
+            <a href="produtos.html">Higiene</a>
+            <a href="#beleza">Beleza</a>
+            <a href="#vitaminas">Vitaminas</a>
+        </nav>
+    </div>
+</header>
+<body>
+
+      <section class="banner">
+            <div class="slides">
+                <img src="https://s2-ge.glbimg.com/MA1_Ni9mXYN5eyBlDGkpdecIbJU=/0x0:600x305/984x0/smart/
+                filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_bc8228b6673f488aa253bbcb03c80ec5/internal_photos/bs/2021/z/s/s7Z1NlS4OMSaJw0E2ACQ/phoenix-valorant.jpg"
+                    alt="">
+                <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5e675e64-dabf-412a-8ddb-53c5d92f8fe8/df38noy-902c9d4a-36ac-4098-ae19-bcaccb1e1860.png/v1/fill/w_1280,h_720,q_80,strp/valorant_chamber_headhunter_wallpaper_by_elvenv_df38noy-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NzIwIiwicGF0aCI6Ii9mLzVlNjc1ZTY0LWRhYmYtNDEyYS04ZGRiLTUzYzVkOTJmOGZlOC9kZjM4bm95LTkwMmM5ZDRhLTM2YWMtNDA5OC1hZTE5LWJjYWNjYjFlMTg2MC5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.a38weqLk_Lztx3-wTkmmL6iwIAl4dEBVpBVVyOSxv5g"
+                    alt="">
+                <img src="https://i.pinimg.com/736x/a6/a3/43/a6a343b48be2ba2eefd997c9dfdfe8d9.jpg" alt="">
+            </div>
+
+            <button class="last"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="next"><i class="fa-solid fa-chevron-right"></i></button>
+
+            <div class="bullets">
+                <span></span>
+                <span></span>
+                <span></span>
+
+            </div>
+        </section>
+
+    
+
+   <div class="Cont">
+<aside>
+        <div class="filtro">
+            
+            <button name="Maiorpreco">
+                
+                 <i class="fa-solid fa-arrow-up-wide-short"></i>
+            
+            </button>
+
+            <button name="Menorpreco">
+                
+                 <i class="fa-solid fa-arrow-down-wide-short"></i>
+            
+            </button>
+
+            
+        
+          </div>
+    </aside>
+        <div class="produto">
+            <img src=" "
+                alt=" " class="produto-foto" onclick="toggleMenu(this)">
+            <p class="produto-nome"><!--definir pelo adm--></p>
+            <p class="produto-preco">R$ <span class="preco-vitrine"><!--definir valor pelo adm--></span></p>
+            <div class="produto-popover" data-preco-unitario=" ">
+                <p class="titulo-popover">Quantas unidades?</p>
+                <div class="seletor-qtd">
+                    <button type="button" onclick="alterarQtd(this, -1)">-</button>
+                    <span class="num-qtd">1</span>
+                    <button type="button" onclick="alterarQtd(this, 1)">+</button>
+                </div>
+                <p class="total-popover">Total: R$ <span class="valor-total-popover"><!--definir valor pelo adm--></span></p>
+                <button class="btn-comprar" data-id="01" data-nome="layout1" data-preco="<!--definir valor pelo adm-->">
+                    Adicionar <i class="fa-solid fa-cart-plus"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Produto 02 -->
+        <div class="produto">
+            <img src="https://apoioentrega.vteximg.com.br/arquivos/ids/1901566/216284_0.png?v=639094553982370000"
+                alt="Combo" class="produto-foto" onclick="toggleMenu(this)">
+            <p class="produto-nome">Combo</p>
+            <p class="produto-preco">R$ <span class="preco-vitrine">15.90</span></p>
+            <div class="produto-popover" data-preco-unitario="15.90">
+                <p class="titulo-popover">Quantas unidades?</p>
+                <div class="seletor-qtd">
+                    <button type="button" onclick="alterarQtd(this, -1)">-</button>
+                    <span class="num-qtd">1</span>
+                    <button type="button" onclick="alterarQtd(this, 1)">+</button>
+                </div>
+                <p class="total-popover">Total: R$ <span class="valor-total-popover">15.90</span></p>
+                <button class="btn-comprar" data-id="02" data-nome="Combo" data-preco="15.90">
+                    Adicionar <i class="fa-solid fa-cart-plus"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Produto 03 -->
+        <div class="produto">
+            <img src="https://naturalterra.vtexassets.com/arquivos/ids/173835/Cha-Matte-Leao-pessego-15l-gelado.jpg.jpg?v=639034791343400000"
+                alt="Chá Matte Leão 1.5L" class="produto-foto" onclick="toggleMenu(this)">
+            <p class="produto-nome">Chá Matte Leão 1.5L</p>
+            <p class="produto-preco">R$ <span class="preco-vitrine">8.60</span></p>
+            <div class="produto-popover" data-preco-unitario="8.60">
+                <p class="titulo-popover">Quantas unidades?</p>
+                <div class="seletor-qtd">
+                    <button type="button" onclick="alterarQtd(this, -1)">-</button>
+                    <span class="num-qtd">1</span>
+                    <button type="button" onclick="alterarQtd(this, 1)">+</button>
+                </div>
+                <p class="total-popover">Total: R$ <span class="valor-total-popover">8.60</span></p>
+                <button class="btn-comprar" data-id="03" data-nome="Chá Matte Leão 1.5L" data-preco="8.60">
+                    Adicionar <i class="fa-solid fa-cart-plus"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Produto 04 -->
+        <div class="produto">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6l_lQL1JRluFqbkQ-b7z5RlbaqEi7Gt092BtUaM8S4w&s=10"
+                alt="Monster Mango Loco" class="produto-foto" onclick="toggleMenu(this)">
+            <p class="produto-nome">Monster Mango Loco</p>
+            <p class="produto-preco">R$ <span class="preco-vitrine">11.89</span></p>
+            <div class="produto-popover" data-preco-unitario="11.89">
+                <p class="titulo-popover">Quantas unidades?</p>
+                <div class="seletor-qtd">
+                    <button type="button" onclick="alterarQtd(this, -1)">-</button>
+                    <span class="num-qtd">1</span>
+                    <button type="button" onclick="alterarQtd(this, 1)">+</button>
+                </div>
+                <p class="total-popover">Total: R$ <span class="valor-total-popover">11.89</span></p>
+                <button class="btn-comprar" data-id="04" data-nome="Monster Mango Loco" data-preco="11.89">
+                    Adicionar <i class="fa-solid fa-cart-plus"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Produto 05 -->
+        <div class="produto">
+            <img src="https://d3gdr9n5lqb5z7.cloudfront.net/fotos/6880.jpg" alt="Frutuba 2L" class="produto-foto"
+                onclick="toggleMenu(this)">
+            <p class="produto-nome">Frutuba 2L</p>
+            <p class="produto-preco">R$ <span class="preco-vitrine">7.89</span></p>
+            <div class="produto-popover" data-preco-unitario="7.89">
+                <p class="titulo-popover">Quantas unidades?</p>
+                <div class="seletor-qtd">
+                    <button type="button" onclick="alterarQtd(this, -1)">-</button>
+                    <span class="num-qtd">1</span>
+                    <button type="button" onclick="alterarQtd(this, 1)">+</button>
+                </div>
+                <p class="total-popover">Total: R$ <span class="valor-total-popover">7.89</span></p>
+                <button class="btn-comprar" data-id="05" data-nome="Frutuba 2L" data-preco="7.89">
+                    Adicionar <i class="fa-solid fa-cart-plus"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Produto 06 -->
+        <div class="produto">
+            <img src="https://carrefourbrfood.vtexassets.com/arquivos/ids/171081772/667473583148090012d28b77_1.jpg?v=638606493071270000"
+                alt="Pepsi 1,5L" class="produto-foto" onclick="toggleMenu(this)">
+            <p class="produto-nome">Pepsi 1,5L</p>
+            <p class="produto-preco">R$ <span class="preco-vitrine">6.89</span></p>
+            <div class="produto-popover" data-preco-unitario="6.89">
+                <p class="titulo-popover">Quantas unidades?</p>
+                <div class="seletor-qtd">
+                    <button type="button" onclick="alterarQtd(this, -1)">-</button>
+                    <span class="num-qtd">1</span>
+                    <button type="button" onclick="alterarQtd(this, 1)">+</button>
+                </div>
+                <p class="total-popover">Total: R$ <span class="valor-total-popover">6.89</span></p>
+                <button class="btn-comprar" data-id="06" data-nome="Pepsi 1,5L" data-preco="6.89">
+                    Adicionar <i class="fa-solid fa-cart-plus"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+<footer class="footer">
+
+        <div class="voltar-topo">
+            <a href="#">
+                Voltar ao Topo
+                <i class="fa-solid fa-chevron-up"></i>
+            </a>
+        </div>
+        <div class="footer-container">
+
+            <div class="footer-logo">
+                <h2>FARMAURA</h2>
+                <p>Saúde e cuidado para você.</p>
+            </div>
+
+            <div class="footer-links">
+                <h3>Navegação</h3>
+                <a href="index.html">Início</a>
+                <a href="produtos.html">Produtos</a>
+                <a href="login.html">Minha conta</a>
+            </div>
+
+            <div class="footer-links">
+                <h3>Categorias</h3>
+                <a href="produtos.html?categoria=remedios">Remédios</a>
+                <a href="produtos.html?categoria=higiene">Higiene</a>
+                <a href="produtos.html?categoria=beleza">Beleza</a>
+                <a href="produtos.html?categoria=vitaminas">Vitaminas</a>
+            </div>
+
+            <div class="footer-contato">
+                <h3>Atendimento</h3>
+                <p><i class="fa-solid fa-phone"></i> (11) 0000-0000</p>
+                <p><i class="fa-solid fa-envelope"></i> contato@farmaura.com</p>
+                <p><i class="fa-solid fa-clock"></i> Seg. a Sex. 08h às 18h</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 FARMAURA. Todos os direitos reservados.</p>
+        </div>
+
+    </footer>
+    <script src="produtos.js"></script>
+    <script src="carrinho.js"></script>  
+</body>
+</html>
