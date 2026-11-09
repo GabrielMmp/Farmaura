@@ -1,78 +1,16 @@
-function alterarQtd(botao, mudanca) {
-    const popover = botao.closest('.produto-popover');
-    const spanQtd = popover.querySelector('.num-qtd');
-    const spanTotal = popover.querySelector('.valor-total-popover');
-    
-    const precoUnitario = parseFloat(popover.getAttribute('data-preco-unitario'));
-    
-    let qtdAtual = parseInt(spanQtd.innerText);
-    qtdAtual += mudanca;
-    
-    if (qtdAtual < 1) qtdAtual = 1; // Impede que a quantidade seja menor que 1
-    
-    spanQtd.innerText = qtdAtual;
-    
-    const novoTotal = (precoUnitario * qtdAtual).toFixed(2);
-    spanTotal.innerText = novoTotal;
-}
-
-// 3. AJAX para buscar a quantidade de itens salvos assim que a página é carregada
-document.addEventListener("DOMContentLoaded", () => {
-    fetch('/api/carrinho-total')
-        .then(res => res.json())
-        .then(dados => {
-            document.getElementById('qtd-itens').innerText = dados.totalItens;
-        })
-        .catch(err => console.error("Erro ao carregar total do carrinho:", err));
-});
-
-// Captura e envia todas as informações corretas via AJAX
-document.querySelectorAll('.btn-comprar').forEach(button => {
-    button.addEventListener('click', function() {
-        const popover = this.closest('.produto-popover');
-        
-        // Coleta as propriedades direto dos atributos do botão clicado
-        const id = this.getAttribute('data-id');
-        const nome = this.getAttribute('data-nome') || "Produto";
-        
-        // Coleta os valores numéricos gerados na interface do popover
-        const quantidade = parseInt(popover.querySelector('.num-qtd').innerText) || 1;
-        const precoTotal = parseFloat(popover.querySelector('.valor-total-popover').innerText);
-
-        // Envia o pacote completo em formato JSON via AJAX para o Node.js
-        fetch('/api/carrinho', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                id: id,
-                nome: nome,
-                quantidade: quantidade,
-                precoTotal: precoTotal
-            })
-        })
-        .then(res => res.json())
-        .then(dados => {
-            if (dados.sucesso) {
-                // Atualiza o contador vermelho de itens do topo na hora
-                document.getElementById('qtd-itens').innerText = dados.totalItens;
-               
-                // Esconde o popover da tela após o sucesso
-                popover.classList.remove('ativo');
-                
-                // Reseta os contadores do popover para que fiquem prontos para um próximo clique
-                popover.querySelector('.num-qtd').innerText = "1";
-                popover.querySelector('.valor-total-popover').innerText = popover.getAttribute('data-preco-unitario');
-               
-                alert(`${nome} adicionado ao carrinho com sucesso!`);
-            }
-        })
-        .catch(err => console.error("Erro na requisição AJAX de compra:", err));
-    });
-});
-
-// Fecha o botão flutuante se o cliente clicar em qualquer área vazia fora do card
-document.addEventListener('click', function(evento) {
-    if (!evento.target.closest('.produto-card')) {
-        document.querySelectorAll('.produto-popover').forEach(p => p.classList.remove('ativo'));
-    }
+document.addEventListener("DOMContentLoaded", function () {
+ const busca=document.getElementById("campoBusca"), cards=[...document.querySelectorAll(".cartao-produto")];
+ const resultado=document.getElementById("resultadoBusca"), sem=document.getElementById("mensagemSemResultado");
+ let categoria="";
+ async function contador(){try{const r=await fetch("carrinho_contagem.php");const d=await r.json();document.querySelectorAll(".contadorCarrinhoTopo").forEach(e=>e.textContent=d.total_itens??0);}catch(e){}}
+ function filtrar(){const termo=(busca?.value||"").toLocaleLowerCase("pt-BR").trim();let n=0;cards.forEach(c=>{const ok=(c.dataset.nome||"").toLocaleLowerCase("pt-BR").includes(termo)||(c.dataset.categoria||"").toLocaleLowerCase("pt-BR").includes(termo);const cat=!categoria||(c.dataset.categoria||"").toLocaleLowerCase("pt-BR")===categoria.toLocaleLowerCase("pt-BR");c.hidden=!(ok&&cat);if(ok&&cat)n++;});if(resultado)resultado.textContent=n+" produto(s)";if(sem)sem.hidden=n!==0;}
+ busca?.addEventListener("input",filtrar);
+ document.querySelectorAll("[data-category-filter]").forEach(b=>b.addEventListener("click",()=>{categoria=b.dataset.categoryFilter||"";document.querySelectorAll("[data-category-filter]").forEach(x=>x.classList.toggle("ativa",x===b));filtrar();}));
+ cards.forEach(c=>{const menos=c.querySelector(".diminuir"),mais=c.querySelector(".aumentar"),q=c.querySelector(".quantidade"),btn=c.querySelector(".botao-carrinho"),estoque=Number(btn.dataset.estoque||0);
+ menos?.addEventListener("click",()=>{if(Number(q.textContent)>1)q.textContent=Number(q.textContent)-1;});
+ mais?.addEventListener("click",()=>{if(Number(q.textContent)<estoque)q.textContent=Number(q.textContent)+1;});
+ btn.addEventListener("click",async()=>{btn.disabled=true;try{const body=new URLSearchParams({id:btn.dataset.id,quantidade:q.textContent});const r=await fetch("adicionar_carrinho.php",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body});const d=await r.json();if(!r.ok||!d.ok)throw new Error(d.mensagem||"Não foi possível adicionar.");await contador();btn.innerHTML='<i class="fa-solid fa-check"></i> Adicionado';setTimeout(()=>btn.innerHTML='<i class="fa-solid fa-cart-plus"></i> Adicionar ao carrinho',1200);}catch(e){alert(e.message);}finally{btn.disabled=estoque<=0;}});
+ if(estoque<=0){btn.disabled=true;btn.textContent="Sem estoque";mais.disabled=true;}
+ });
+ contador();filtrar();
 });
